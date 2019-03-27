@@ -112,7 +112,7 @@ roi2 = set_bounds(img2)
 
 # get_error_label = np.vectorize(error)
 # error_label = get_error_label(masks)
-print("Current mask error:"+str(error(ps.mask_HSV)*100)+"%")
+print("Current mask error:" + str(error(ps.mask_HSV) * 100) + "%")
 print("Starting calculation... \n")
 # error_label = tqdm(np.array(list(map(error,masks))))
 error_label = np.array([])
@@ -122,6 +122,6 @@ print(error_label[:10])
 NewOptimalMask = masks[np.argmin(error_label)]
 print("New optimal mask: ")
 print(NewOptimalMask)
-print("error: "+str(error(tuple(NewOptimalMask))*100)+"%")
+print("error: " + str(error(tuple(NewOptimalMask)) * 100) + "%")
 # тут надо argmin взять от слоя ошибок и выявить лучший HSV. С первого раза вряд ли запустится.
 cv.destroyAllWindows()

@@ -14,6 +14,7 @@ cv.waitKey(1000)
 contours_info = cv.findContours(mask, cv.RETR_TREE, cv.CHAIN_APPROX_NONE)
 contours = contours_info[0]
 
+
 def get_error(mask):
     contours_info = cv.findContours(mask, cv.RETR_TREE, cv.CHAIN_APPROX_NONE)
     contours = contours_info[0]
@@ -22,8 +23,8 @@ def get_error(mask):
         contour = contours[0]
         epsilon = 0.01 * cv.arcLength(contour, True)
         approx = cv.approxPolyDP(contour, epsilon, True)
-        right = approx[np.argmax(approx,axis=0)[0][0]][0][0]
-        bot = approx[np.argmax(approx,axis=0)[0][1]][0][1]
+        right = approx[np.argmax(approx, axis=0)[0][0]][0][0]
+        bot = approx[np.argmax(approx, axis=0)[0][1]][0][1]
         left = approx[np.argmin(approx, axis=0)[0][0]][0][0]
         top = approx[np.argmin(approx, axis=0)[0][1]][0][1]
 
@@ -40,12 +41,11 @@ if contours:
     cv.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 255), 2)
     epsilon = 0.01 * cv.arcLength(contour, True)
     approx = cv.approxPolyDP(contour, epsilon, True)
-    #approx = np.squeeze(approx, axis=1)
-    #print(approx)
+    # approx = np.squeeze(approx, axis=1)
+    # print(approx)
     get_error(mask)
     cv.drawContours(frame, approx, -1, (255, 0, 0), 8)
     cv.imshow("", frame)
-
 
 while (True):
     if cv.waitKey() == 27:
